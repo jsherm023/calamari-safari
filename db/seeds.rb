@@ -1,0 +1,2 @@
+User.create(first_name: "Joe", last_name: "Sherman", email: "joseph.sh3rman@gmail.com", password_digest: "abc123", phone_number: "630-781-9454")
+User.create(first_name: "Lindsay", last_name: "Sherman", email: "lindsay.sh3rman@gmail.com", password_digest: "1098zxy", phone_number: "708-555-5555")
