@@ -23,5 +23,17 @@ Rails.application.routes.draw do
     get '/restaurants/:id' => 'restaurants#show'
     patch '/restaurants/:id' => 'restaurants#update'
     delete '/restaurants/:id' => 'restaurants#destroy'
+
+    get '/menus' => 'menus#index'
+    post '/menus' => 'menus#create'
+    get '/menus/:id' => 'menus#show'
+    patch '/menus/:id' => 'menus#update'
+    delete '/menus/:id' => 'menus#destroy'
+
+    get '/ratings' => 'ratings#index'
+    post '/ratings' => 'ratings#create'
+    get '/ratings/:id' => 'ratings#show'
+    patch '/ratings/:id' => 'ratings#update'
+    delete '/ratings/:id' => 'ratings#destroy'
   end
 end
