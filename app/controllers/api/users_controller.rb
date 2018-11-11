@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      password_digest: params[:password_digest],
+      password: params[:password],
       phone_number: params[:phone_number]
     )
     @user.save
@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      password_digest: params[:password_digest],
+      password: params[:password],
       phone_number: params[:phone_number]
     )
     render "show.json.jbuilder"
