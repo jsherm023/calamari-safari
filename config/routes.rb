@@ -10,22 +10,13 @@ Rails.application.routes.draw do
     get '/states/:id' => 'states#show'
 
     get '/cities' => 'cities#index'
-    post '/cities' => 'cities#create'
     get '/cities/:id' => 'cities#show'
-    patch '/cities/:id' => 'cities#update'
-    delete '/cities/:id' => 'cities#destroy'
 
     get '/restaurants' => 'restaurants#index'
-    post '/restaurants' => 'restaurants#create'
     get '/restaurants/:id' => 'restaurants#show'
-    patch '/restaurants/:id' => 'restaurants#update'
-    delete '/restaurants/:id' => 'restaurants#destroy'
 
     get '/menus' => 'menus#index'
-    post '/menus' => 'menus#create'
     get '/menus/:id' => 'menus#show'
-    patch '/menus/:id' => 'menus#update'
-    delete '/menus/:id' => 'menus#destroy'
 
     get '/ratings' => 'ratings#index'
     post '/ratings' => 'ratings#create'
