@@ -23,8 +23,5 @@ Rails.application.routes.draw do
     get '/ratings/:id' => 'ratings#show'
     patch '/ratings/:id' => 'ratings#update'
     delete '/ratings/:id' => 'ratings#destroy'
-
-    get '/restaurant_menus' => 'restaurant_menus#index'
-    get '/restaurant_menus/:id' => 'restaurant_menus#show'
   end
 end

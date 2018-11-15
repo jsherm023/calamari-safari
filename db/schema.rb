@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_012905) do
+ActiveRecord::Schema.define(version: 2018_11_15_024533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_012905) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -37,13 +38,6 @@ ActiveRecord::Schema.define(version: 2018_11_15_012905) do
     t.string "source"
     t.integer "restaurant_id"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "restaurant_menus", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,3 +1,4 @@
 class User < ApplicationRecord
-  has_many :rating
+  has_many :ratings
+  has_many :restaurants, through: :ratings
 end
