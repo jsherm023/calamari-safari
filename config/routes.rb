@@ -23,5 +23,8 @@ Rails.application.routes.draw do
     get '/ratings/:id' => 'ratings#show'
     patch '/ratings/:id' => 'ratings#update'
     delete '/ratings/:id' => 'ratings#destroy'
+
+    get '/zip_codes' => 'zip_codes#index'
+    get '/zip_codes/:id' => 'zip_codes#show'
   end
 end
