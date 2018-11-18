@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     @users = User.all
     render "index.json.jbuilder"
   end
-
+  # How can you filter ratings for the current user and view all other ratings. Filter by must_visit?
   def create
     @user = User.new(
       first_name: params[:first_name],
