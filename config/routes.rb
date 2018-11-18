@@ -26,5 +26,7 @@ Rails.application.routes.draw do
 
     get '/zip_codes' => 'zip_codes#index'
     get '/zip_codes/:id' => 'zip_codes#show'
+
+    post '/sessions' => 'sessions#create'
   end
 end
