@@ -11,7 +11,7 @@ class Api::RatingsController < ApplicationController
       must_visit: params[:must_visit],
       source: params[:source],
       restaurant_id: params[:restaurant_id],
-      user_id: params[:user_id]
+      user_id: current_user.id
     )
     @rating.save
     render "show.json.jbuilder"
@@ -30,7 +30,7 @@ class Api::RatingsController < ApplicationController
       must_visit: params[:must_visit],
       source: params[:source],
       restaurant_id: params[:restaurant_id],
-      user_id: params[:user_id]
+      user_id: current_user.id
     )
     render "show.json.jbuilder"
   end

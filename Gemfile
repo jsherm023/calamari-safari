@@ -49,3 +49,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'http'
 gem 'jwt'
+gem 'faraday'
+gem 'faraday_middleware'
