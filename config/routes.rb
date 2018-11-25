@@ -6,12 +6,6 @@ Rails.application.routes.draw do
     patch '/users/:id' => 'users#update'
     delete '/users/:id' => 'users#destroy'
 
-    get '/states' => 'states#index'
-    get '/states/:id' => 'states#show'
-
-    get '/cities' => 'cities#index'
-    get '/cities/:id' => 'cities#show'
-
     get '/restaurants' => 'restaurants#index'
     get '/restaurants/:id' => 'restaurants#show'
 
@@ -23,9 +17,6 @@ Rails.application.routes.draw do
     get '/ratings/:id' => 'ratings#show'
     patch '/ratings/:id' => 'ratings#update'
     delete '/ratings/:id' => 'ratings#destroy'
-
-    get '/zip_codes' => 'zip_codes#index'
-    get '/zip_codes/:id' => 'zip_codes#show'
 
     post '/sessions' => 'sessions#create'
   end

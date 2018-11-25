@@ -55,3 +55,13 @@ module OpenTable
     end
   end
 end
+api = OpenTable::Client.new
+
+# Find restaurants
+ resp = api.restaurants(:city => "Chicago")
+
+# Process response
+ resp['count']       # => records found
+p resp['restaurants'][0] # => restaurant records
+# Fetch a single record
+ api.restaurant(81169)
