@@ -63,13 +63,30 @@ api = OpenTable::Client.new
  resp = api.restaurants(:city => "Chicago")
 
 # Process response
- resp['count']       # => records found
+resp['current_page'] = 2
+p resp['count']    # => records found
 resp['restaurants']
+
 index = 0
-resp['restaurants'].each do 
-Restaurant.create(name: resp['restaurants'][index]['name'], address: resp['restaurants'][index]['address'], city: resp['restaurants'][index]['city'], state: resp['restaurants'][index]['state'], area: resp['restaurants'][index]['area'], postal_code: resp['restaurants'][index]['postal_code'], country: resp['restaurants'][index]['country'], phone: resp['restaurants'][index]['phone'], lat: resp['restaurants'][index]['lat'], lng: resp['restaurants'][index]['lng'], price: resp['restaurants'][index]['price'], reserve_url: resp['restaurants'][index]['reserve_url'], mobile_reserve_url: resp['restaurants'][index]['mobile_reserve_url'], image_url: resp['restaurants'][index]['image_url'])
-index += 1
-end 
+ p resp
+# resp['restaurants'].each do 
+# Restaurant.create(
+#   name: resp['restaurants'][index]['name'],
+#   address: resp['restaurants'][index]['address'],
+#   city: resp['restaurants'][index]['city'],
+#   state: resp['restaurants'][index]['state'],
+#   area: resp['restaurants'][index]['area'],
+#   postal_code: resp['restaurants'][index]['postal_code'],
+#   country: resp['restaurants'][index]['country'],
+#   phone: resp['restaurants'][index]['phone'],
+#   lat: resp['restaurants'][index]['lat'],
+#   lng: resp['restaurants'][index]['lng'],
+#   price: resp['restaurants'][index]['price'],
+#   reserve_url: resp['restaurants'][index]['reserve_url'],
+#   mobile_reserve_url: resp['restaurants'][index]['mobile_reserve_url'],
+#   image_url: resp['restaurants'][index]['image_url'])
+# index += 1
+# end 
 # => restaurant records
 # Fetch a single record
  api.restaurant(81169)
