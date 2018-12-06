@@ -1,6 +1,7 @@
 class Api::RatingsController < ApplicationController
+  before_action :authenticate_user
   def index
-    @ratings = Rating.all
+    @ratings = current_user.ratings
     render "index.json.jbuilder"
   end
 

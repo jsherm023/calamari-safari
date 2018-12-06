@@ -6,4 +6,5 @@ json.array! @ratings do |rating|
   json.source rating.source
   json.restaurant_id rating.restaurant_id
   json.user_id rating.user_id
+  json.restaurant rating.restaurant
 end
