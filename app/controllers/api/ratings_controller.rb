@@ -1,7 +1,7 @@
 class Api::RatingsController < ApplicationController
   before_action :authenticate_user
   def index
-    @ratings = current_user.ratings
+    @ratings = current_user.ratings.where(must_visit: 'yes')
     render "index.json.jbuilder"
   end
 
@@ -26,12 +26,12 @@ class Api::RatingsController < ApplicationController
   def update
     @rating = Rating.find_by(id:params[:id])
     @rating.update(
-      star: params[:star],
-      review: params[:review],
-      must_visit: params[:must_visit],
-      source: params[:source],
-      restaurant_id: params[:restaurant_id],
-      user_id: current_user.id
+      # star: params[:star],
+      # review: params[:review],
+      must_visit: "no"
+      # source: params[:source],
+      # restaurant_id: params[:restaurant_id],
+      # user_id: current_user.id
     )
     render "show.json.jbuilder"
   end
