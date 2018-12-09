@@ -97,11 +97,15 @@ zomato_instance = Romato::Zomato.new("91d2cff6209c41fedf9b0f01c6ce8e78")
 
 
 #create instance of restaurant including id
-zomato_instance.get_geocode( { lat: "41.881832", lon: "-87.623177" } )
+zomato_instance.get_geocode( { lat: "41.891256", lon: "-87.625365" } )
 
 
 #call city on zomato_instance.restaurant
-p zomato_instance.geocode
+# p zomato_instance.geocode['nearby_restaurants']
+
+# print Zomato Restaurant id
+p zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id']
+
 
 
 # #add rating
@@ -122,7 +126,8 @@ Restaurant.create(
   image_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['featured_image'],
   url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['url'],
   menu_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['menu_url'],
-   cuisine: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['cuisines'])
+   cuisine: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['cuisines'],
+   zomato_id: zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id'])
 index += 1
 end 
 
