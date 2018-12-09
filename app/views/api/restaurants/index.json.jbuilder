@@ -2,7 +2,7 @@ json.array! @restaurants do |restaurant|
 json.id restaurant.id
 json.name restaurant.name
 json.description restaurant.description
-json.cuizine restaurant.cuisine
+json.cuisine restaurant.cuisine
 json.style restaurant.style
 json.area restaurant.area
 json.phone restaurant.phone
@@ -15,4 +15,6 @@ json.state restaurant.state
 json.address restaurant.address
 json.postal_code restaurant.postal_code
 json.country restaurant.country
+json.url restaurant.url
+json.menu_url restaurant.menu_url
 end
