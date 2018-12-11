@@ -3,6 +3,9 @@
 require "faraday"
 require "faraday_middleware"
 require "unirest"
+require 'csv'
+
+
 
 # module OpenTable
 #   class Error < StandardError ; end
@@ -95,41 +98,58 @@ require "unirest"
 #make api request
 zomato_instance = Romato::Zomato.new("91d2cff6209c41fedf9b0f01c6ce8e78")
 
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Restaurant lat lng capstone - Sheet1.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+puts csv
+
+
+
 
 #create instance of restaurant including id
-zomato_instance.get_geocode( { lat: "41.891256", lon: "-87.625365" } )
+
 
 
 #call city on zomato_instance.restaurant
 # p zomato_instance.geocode['nearby_restaurants']
 
 # print Zomato Restaurant id
-p zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id']
+# p zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id']
 
 
 
 # #add rating
 # p zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['user_rating']["aggregate_rating"]
-
-index = 0
-zomato_instance.geocode['nearby_restaurants'].each do 
-Restaurant.create(
-  name: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['name'],
-  address: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['address'],
-  city: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['city'],
-  area: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['locality'],
-  postal_code: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['zipcode'],
-  lat: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['latitude'],
-  lng: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['longitude'],
-  price: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['price_range'],
-  reserve_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['book_form_web_view_url'],
-  image_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['featured_image'],
-  url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['url'],
-  menu_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['menu_url'],
-   cuisine: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['cuisines'],
-   zomato_id: zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id'])
-index += 1
-end 
+outerindex = 0
+csv.each do |row|
+  if outerindex < 600
+    return "done"
+  end
+  lattitudefromcsv = row.to_hash['lat'] 
+  longitudefromcsv = row.to_hash['lng'] 
+  zomato_instance.get_geocode( { lat: lattitudefromcsv, lon: longitudefromcsv } )
+  outerindex += 1
+  index = 0
+  zomato_instance.geocode['nearby_restaurants'].each do 
+  restaurant1 = Restaurant.new(
+    name: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['name'],
+    address: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['address'],
+    city: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['city'],
+    area: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['locality'],
+    postal_code: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['zipcode'],
+    lat: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['latitude'],
+    lng: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['location']['longitude'],
+    price: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['price_range'],
+    reserve_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['book_form_web_view_url'],
+    image_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['featured_image'],
+    url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['url'],
+    menu_url: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['menu_url'],
+     cuisine: zomato_instance.geocode['nearby_restaurants'][index]['restaurant']['cuisines'],
+     zomato_id: zomato_instance.geocode['nearby_restaurants'][0]['restaurant']['id'])
+  restaurant1.save
+  p restaurant1.errors.full_messages
+  index += 1
+  end 
+end
 
 
 
