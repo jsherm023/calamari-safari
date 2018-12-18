@@ -14,3 +14,7 @@ json.state @restaurant.state
 json.address @restaurant.address
 json.postal_code @restaurant.postal_code
 json.country @restaurant.country
+json.url @restaurant.url
+json.menu_url @restaurant.menu_url
+
+
